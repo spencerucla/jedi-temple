@@ -3,7 +3,7 @@ class Solution {
         if (nums.length == 0) return -1;
         int lo = 0;
         int hi = nums.length-1;
-        while (lo < hi) {
+        while (lo <= hi) {
             int mid = (lo + hi) / 2;
             if (target == nums[mid])
                 return mid;
@@ -25,6 +25,6 @@ class Solution {
                 }
             }
         }
-        return nums[lo] == target ? lo : -1;
+        return -1;
     }
 }
