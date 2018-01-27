@@ -11,23 +11,17 @@ class Solution {
     public boolean isValidBST(TreeNode root) {
         if (root == null)
             return true;
-        List<Integer> nums = new ArrayList<Integer>();
-        inorder(root, nums);
-        // System.out.println(nums);
-        int prev = nums.get(0);
-        for (int i = 1; i < nums.size(); i++) {
-            if (prev >= nums.get(i))
-                return false;
-            prev = nums.get(i);
-        }
-        return true;
+        return inorder(root, Long.MIN_VALUE) != Long.MAX_VALUE;
     }
 
-    private void inorder(TreeNode node, List<Integer> nums) {
+    private long inorder(TreeNode node, long prev) {
         if (node.left != null)
-            inorder(node.left, nums);
-        nums.add(node.val);
+            prev = inorder(node.left, prev);
+        if (prev >= node.val)
+            return Long.MAX_VALUE;
+        prev = node.val;
         if (node.right != null)
-            inorder(node.right, nums);
+            prev = inorder(node.right, prev);
+        return prev;
     }
 }
