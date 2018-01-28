@@ -15,8 +15,7 @@ class Solution {
         intervals.sort((i1, i2) -> Integer.compare(i1.start, i2.start));
         List<Interval> ret = new ArrayList<Interval>();
         Interval prev = intervals.get(0);
-        for (int i = 1; i < intervals.size(); i++) {
-            Interval curr = intervals.get(i);
+        for (Interval curr : intervals) {
             if (curr.start <= prev.end) {
                 prev.end = Math.max(curr.end, prev.end);
             } else {
