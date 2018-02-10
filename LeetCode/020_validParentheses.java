@@ -1,6 +1,6 @@
 class Solution {
     public boolean isValid(String s) {
-        Deque<Character> deque = new LinkedList<Character>();
+        Deque<Character> deque = new ArrayDeque<Character>();
         for (char c : s.toCharArray()) {
             switch (c) {
                 case '(' :
