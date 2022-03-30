@@ -15,4 +15,17 @@ class Solution {
         else                    // left half
             return search(nums, target, left, mid-1);
     }
+
+    public int searchIter(int[] nums, int target) {
+        int lo = 0, hi = nums.length-1;
+        while (lo < hi) {
+            int mid = (lo + hi + 1) / 2;
+            if (target < nums[mid]) {
+                hi = mid-1;
+            } else {
+                lo = mid;
+            }
+        }
+        return target == nums[lo] ? lo : -1;
+    }
 }
