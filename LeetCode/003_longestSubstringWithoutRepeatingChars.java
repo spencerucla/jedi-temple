@@ -8,14 +8,14 @@ class Solution {
                 map.put(c, i);
                 curlen++;
             } else {
-                maxlen = Math.max(curlen, maxlen);
                 int removePos = map.get(c);
                 for (char c2 : s.substring(i-curlen, removePos+1).toCharArray())
                     map.remove(c2);
                 map.put(c, i);
-                curlen -= (removePos - i + curlen);
+                curlen = i - removePos;
             }
+            maxlen = Math.max(curlen, maxlen);
         }
-        return Math.max(curlen, maxlen);
+        return maxlen;
     }
 }
