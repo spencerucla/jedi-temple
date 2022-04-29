@@ -8,7 +8,7 @@ class Solution {
             if (target == nums[mid])
                 return mid;
             if (nums[lo] <= nums[mid]) {
-                if (target >= nums[lo] && target <= nums[mid]) {
+                if (target >= nums[lo] && target < nums[mid]) {
                     // left half is sorted and target is in left half
                     hi = mid - 1;
                 } else {
@@ -16,7 +16,7 @@ class Solution {
                     lo = mid + 1;
                 }
             } else {
-                if (target >= nums[mid] && target <= nums[hi]) {
+                if (target > nums[mid] && target <= nums[hi]) {
                     // right half is sorted and target is in right half
                     lo = mid + 1;
                 } else {
