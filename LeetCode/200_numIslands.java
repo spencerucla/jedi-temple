@@ -6,8 +6,9 @@ class Solution {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j] == '1' && !visited[i][j]) {
-                search(grid, visited, i, j);
-                numIslands++;}
+                	dfs(grid, visited, i, j);
+                	numIslands++;
+				}
             }
         }
         return numIslands;
@@ -20,12 +21,37 @@ class Solution {
         if (grid[i][j] == '0')
             return;
         if (i-1 >= 0)
-            search(grid, visited, i-1, j);
+            dfs(grid, visited, i-1, j);
         if (i+1 < grid.length)
-            search(grid, visited, i+1, j);
+            dfs(grid, visited, i+1, j);
         if (j-1 >= 0)
-            search(grid, visited, i, j-1);
+            dfs(grid, visited, i, j-1);
         if (j+1 < grid[i].length)
-            search(grid, visited, i, j+1);
+            dfs(grid, visited, i, j+1);
+    }
+
+	// no extra space, modify grid
+    public int numIslands2(char[][] grid) {
+        int num = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1') {
+                    dfs(grid, i, j);
+                    num++;
+                }
+            }
+        }
+        return num;
+    }
+
+    private void dfs(char[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length
+				|| grid[i][j] == '0')
+            return;
+        grid[i][j] = '0';
+        dfs(grid, i-1, j);
+        dfs(grid, i+1, j);
+        dfs(grid, i, j-1);
+        dfs(grid, i, j+1);
     }
 }
