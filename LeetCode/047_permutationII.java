@@ -1,19 +1,19 @@
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
-        Set<List<Integer>> set = new HashSet<>();
-        dfs(nums, new ArrayList<>(), set, new boolean[nums.length]);
         List<List<Integer>> ret = new ArrayList<>();
-        ret.addAll(set);
+        Arrays.sort(nums);
+        dfs(nums, new ArrayList<>(), ret, new boolean[nums.length]);
         return ret;
     }
 
-    private void dfs(int[] nums, List<Integer> curr, Set<List<Integer>> ret, boolean[] used) {
+    private void dfs(int[] nums, List<Integer> curr, List<List<Integer>> ret, boolean[] used) {
         if (curr.size() == nums.length) {
             ret.add(new ArrayList<>(curr));
             return;
         }
         for (int i = 0; i < nums.length; i++) {
             if (used[i]) continue;
+            if (i > 0 && nums[i-1] == nums[i] && used[i-1]) continue;
             curr.add(nums[i]);
             used[i] = true;
             dfs(nums, curr, ret, used);
