@@ -8,7 +8,7 @@ class Solution {
         }
         dfs(ret, new ArrayList<Integer>(), numsList);
         */
-        dfs(nums, new ArrayList<>(), list, new boolean[nums.length]);
+        dfs(nums, new ArrayList<>(), ret, new boolean[nums.length]);
         return ret;
     }
 
